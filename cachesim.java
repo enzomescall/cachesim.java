@@ -67,7 +67,7 @@ public class cachesim {
 
             myReader.close();
 
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
 
             // PRINT STATEMENT System.out.println("oopsie woopsie! it seems like something went wrong! uwu");
 
@@ -116,7 +116,7 @@ public class cachesim {
 
             for (int i = 0; i < this.data.length; i++) {
 
-                memory[2*this.tag + i] = this.data[i];
+                memory[2 * this.tag + i] = this.data[i];
 
             }
 
@@ -149,9 +149,9 @@ public class cachesim {
 
             if (quantity > data.length) quantity = data.length;
 
-            for (int i = 0; i < data.length && i + 2*relativeAddress < this.data.length; i++) {
+            for (int i = 0; i < data.length && i + 2 * relativeAddress < this.data.length; i++) {
 
-                this.data[i + 2*relativeAddress] = data[i];
+                this.data[i + 2 * relativeAddress] = data[i];
 
             }
 
@@ -183,7 +183,7 @@ public class cachesim {
 
             System.out.print("Printing Queue of size " + q.size() + ":");
 
-            while(q.size() > 0) {
+            while (q.size() > 0) {
 
                 cacheBlock blockToCheck = q.remove();
 
@@ -272,7 +272,7 @@ public class cachesim {
 
             // PRINT STATEMENT System.out.println("(method reorder) with: " + block.tag + " and size: " + blocks.size());
 
-            while(blocks.size() > 0) {
+            while (blocks.size() > 0) {
 
                 cacheBlock blockToCheck = blocks.remove();
 
@@ -280,7 +280,7 @@ public class cachesim {
 
                 // PRINT STATEMENT System.out.println(blockToCheck.data);
 
-                if(blockToCheck.sameBlock(block)) {
+                if (blockToCheck.sameBlock(block)) {
 
                     // PRINT STATEMENT System.out.println("block " + blockToCheck.tag + " found!" + blockToCheck.data[0]);
 
@@ -335,7 +335,7 @@ public class cachesim {
 
                     // pull out the right part of the block
 
-                    char[] dataCopy = Arrays.copyOfRange(temp.data, 2*relativeAddress, 2*(relativeAddress + mySize)); // multiplying by 2 because 2 char = 1 pseudo-byte
+                    char[] dataCopy = Arrays.copyOfRange(temp.data, 2 * relativeAddress, 2 * (relativeAddress + mySize)); // multiplying by 2 because 2 char = 1 pseudo-byte
 
 
                     // PRINT STATEMENT System.out.println("data: " + temp.data[0] + " found at address: " + relativeAddress);
@@ -366,7 +366,7 @@ public class cachesim {
 
             // PRINT STATEMENT System.out.println("(method popBlock) with: " + block.tag + " and size: " + blocks.size());
 
-            while(blocks.size() > 0) {
+            while (blocks.size() > 0) {
 
                 cacheBlock blockToCheck = blocks.remove();
 
@@ -374,7 +374,7 @@ public class cachesim {
 
                 // PRINT STATEMENT System.out.println(blockToCheck.data);
 
-                if(blockToCheck.sameBlock(block)) {
+                if (blockToCheck.sameBlock(block)) {
 
                     // PRINT STATEMENT System.out.println("block " + blockToCheck.tag + " found!" + blockToCheck.data[0]);
 
@@ -402,7 +402,6 @@ public class cachesim {
         }
 
     }
-
 
 
     public static class Cache {
@@ -446,7 +445,7 @@ public class cachesim {
 
             int address = Integer.parseInt(lineInfo[1], 16);
 
-            int blockAddress = address - (address%block);
+            int blockAddress = address - (address % block);
 
             tempBlock.tag = blockAddress;
 
@@ -455,7 +454,7 @@ public class cachesim {
 
             // formula is (address/sett quantity)%set quantity
 
-            int setNumber = (blockAddress/block)%(sets.length);
+            int setNumber = (blockAddress / block) % (sets.length);
 
 
             // PRINT STATEMENT System.out.println ("looking at: (" + blockAddress + " / " + block + ") % " + sets.length + " = " + setNumber);
@@ -494,7 +493,7 @@ public class cachesim {
 
                     // accessing data from memory and adding it to block
 
-                    char[] tempBlockData = Arrays.copyOfRange(memory, 2*blockAddress, 2*(blockAddress + block)); // multiplying by 2 because 2 char = 1 pseudo-byte
+                    char[] tempBlockData = Arrays.copyOfRange(memory, 2 * blockAddress, 2 * (blockAddress + block)); // multiplying by 2 because 2 char = 1 pseudo-byte
 
                     tempBlock.data = tempBlockData;
 
@@ -558,7 +557,7 @@ public class cachesim {
 
                         // read block from lower level
 
-                        char[] tempBlockData = Arrays.copyOfRange(memory, 2*blockAddress, 2*(blockAddress + block)); // multiplying by 2 because 2 char = 1 pseudo-byte
+                        char[] tempBlockData = Arrays.copyOfRange(memory, 2 * blockAddress, 2 * (blockAddress + block)); // multiplying by 2 because 2 char = 1 pseudo-byte
 
                         tempBlock.data = tempBlockData;
 
@@ -613,8 +612,8 @@ public class cachesim {
 
                         // write directly to memory
                         // todo make sure you only write the relevant piece
-                        for (int i = 0; i < 2*Integer.parseInt(lineInfo[2]); i++) {
-                            memory[i + 2*address] = lineInfo[3].toCharArray()[i];
+                        for (int i = 0; i < 2 * Integer.parseInt(lineInfo[2]); i++) {
+                            memory[i + 2 * address] = lineInfo[3].toCharArray()[i];
                         }
 
                         return lineInfo[0] + " " + lineInfo[1] + " miss";
@@ -652,7 +651,7 @@ public class cachesim {
 
         // basic extrapolation from inputted information
 
-        int setQuantity = (size * 1024)/(associativity * block);
+        int setQuantity = (size * 1024) / (associativity * block);
 
 
         // file contents will be in fileLines arraylist
@@ -666,7 +665,7 @@ public class cachesim {
 
         // loop through arguments
 
-        for (int i = 0; i < fileLines.size(); i++){
+        for (int i = 0; i < fileLines.size(); i++) {
 
             // pulling the lines one by one
 
